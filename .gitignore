@@ -1,0 +1,16 @@
+# Ambientes Virtuais
+.venv/
+venv/
+__pycache__/
+
+# Variáveis de Ambiente
+.env
+
+# Credenciais e Wallets Oracle (NÃO SUBIR)
+*.sso
+*.p12
+*.pem
+*.jks
+*.ora
+*.properties
+Wallet_*/
