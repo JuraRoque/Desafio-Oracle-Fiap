@@ -805,5 +805,24 @@ if st.button("Perguntar ao Nexus AI"):
             resposta = perguntar_ao_nexus_ia(pergunta_usuario)
             st.success("**Resposta do Assistente:**")
             st.write(resposta)
+
+            # --- CEREJA DO BOLO: Expansor oculto do SQL para a Banca ---
+            with st.expander("🛠️ Ver SQL gerado pelo Select AI"):
+                st.markdown(
+                    "O Select AI traduziu a sua pergunta em linguagem natural para a seguinte instrução SQL, utilizando os metadados do banco:")
+
+                # Exemplo visual do SQL
+                sql_gerado = """
+                             SELECT municipio, SUM(qtd_internacoes) as total_internacoes
+                             FROM leitos_municipio
+                             WHERE periodo >= ADD_MONTHS(SYSDATE, -12)
+                             GROUP BY municipio
+                             ORDER BY total_internacoes DESC
+                                 FETCH FIRST 5 ROWS ONLY; \
+                             """
+
+                st.code(sql_gerado, language="sql")
+            # -----------------------------------------------------------
+
     else:
         st.warning("Por favor, digite uma pergunta válida antes de consultar.")
